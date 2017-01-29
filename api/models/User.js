@@ -9,13 +9,19 @@
 module.exports = {
 
   attributes: require('waterlock').models.user.attributes({
-    
+
     /* e.g.
     nickname: 'string'
     */
-    
+
+    companyRelationships:{
+      collection: 'CompanyToUser',
+      via: 'user', 
+      dominant: true
+    }
+
   }),
-  
+
   beforeCreate: require('waterlock').models.user.beforeCreate,
   beforeUpdate: require('waterlock').models.user.beforeUpdate
 };
