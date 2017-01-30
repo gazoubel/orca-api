@@ -16,13 +16,7 @@ module.exports = require('waterlock').waterlocked({
   */
   acronymExists: function(req, res) {
 		var acronym = req.param("acronym") || '';
-
-    // if (acronym=='test') {
-    //   return res.ok(true);
-    // } else {
-    //   return res.ok(false);
-    // }
-
+    
 		Company.findOne()
 		.where({
 			acronym: acronym
@@ -56,8 +50,6 @@ module.exports = require('waterlock').waterlocked({
       password: params.newRegistration.password,
       email: params.newRegistration.email
     }
-    // attr['email'] = params[scopeKey];
-
 
     waterlock.engine.findAuth(criteria, function(err, user) {
       if (user)
