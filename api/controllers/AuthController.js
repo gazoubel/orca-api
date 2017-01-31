@@ -16,7 +16,7 @@ module.exports = require('waterlock').waterlocked({
   */
   acronymExists: function(req, res) {
 		var acronym = req.param("acronym") || '';
-    
+
 		Company.findOne()
 		.where({
 			acronym: acronym
@@ -58,23 +58,70 @@ module.exports = require('waterlock').waterlocked({
         waterlock.engine.findOrCreateAuth(criteria, attr, function(err, user) {
           if (err)
             return res.badRequest(err);
+
           console.log ('id: '+user.id);
+          console.log ('EMAIL: '+user.email);
+          console.log ('pass: '+user.password);
           delete user.password;
 
-          Company.create({
-            name: params.newRegistration.companyFullName,
-            acronym: params.newRegistration.companyAcronym
+          Person.create({
+            user: user.id,
+            firstName: params.newRegistration.firstName,
+            lastName: params.newRegistration.lastName,
+            email: params.newRegistration.email
+          }).then(function(person){
+            console.log ('person id: '+person.id);
+            user.person = person.id;
+            console.log ('user id: '+user.id);
+            return user.save(function(error) {
+                if(error) {
+                  console.log ('user error: '+error);
+                    // do something with the error.
+                } else {
+                    // value saved!
+                    // req.send(user);
+                    console.log ('user person updated: '+user.person );
+                    return user;
+                }
+            });
+            // return user.save();
+          }).then(function(updatedUser){
+            console.log ('updatedUser id: '+updatedUser.id);
+            return Company.create({
+              name: params.newRegistration.companyFullName,
+              acronym: params.newRegistration.companyAcronym
+            })
           }).then(function(company){
+            console.log ('company id: '+company.id);
             return CompanyToUser.create({
               user: user.id,
               company: company.id,
               privilege: 'admin'
             });
           }).then(function(companyToUser){
+            console.log ('companyToUser id: '+companyToUser.id);
             console.log ('finished creation: ');
             return res.ok(user);
+          }).catch(function (err) {
+            // catch any exception problem up to this point
+            console.log("Serious problem during company creation", err);
+            throw new Error('could not create company: '+err);
+        });
 
-          });
+          // Company.create({
+          //   name: params.newRegistration.companyFullName,
+          //   acronym: params.newRegistration.companyAcronym
+          // }).then(function(company){
+          //   return CompanyToUser.create({
+          //     user: user.id,
+          //     company: company.id,
+          //     privilege: 'admin'
+          //   });
+          // }).then(function(companyToUser){
+          //   console.log ('finished creation: ');
+          //   return res.ok(user);
+          //
+          // });
         });
       }
     });

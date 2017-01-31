@@ -159,4 +159,8 @@ module.exports.blueprints = {
 
   // defaultLimit: 30
 
+  ember: {
+    sideLoad: true
+  }
+
 };

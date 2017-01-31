@@ -16,8 +16,11 @@ module.exports = {
 
     companyRelationships:{
       collection: 'CompanyToUser',
-      via: 'user', 
+      via: 'user',
       dominant: true
+    },
+    person:{
+      model: 'Person'
     }
 
   }),
