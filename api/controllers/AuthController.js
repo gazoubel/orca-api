@@ -60,8 +60,8 @@ module.exports = require('waterlock').waterlocked({
             return res.badRequest(err);
 
           console.log ('id: '+user.id);
-          console.log ('EMAIL: '+user.email);
-          console.log ('pass: '+user.password);
+          console.log ('EMAIL: '+user.auth.email);
+          console.log ('pass: '+user.auth.password);
           delete user.password;
 
           Person.create({
@@ -71,6 +71,7 @@ module.exports = require('waterlock').waterlocked({
             email: params.newRegistration.email
           }).then(function(person){
             console.log ('person id: '+person.id);
+            console.log ('person email: '+person.email);
             user.person = person.id;
             console.log ('user id: '+user.id);
             return user.save(function(error) {

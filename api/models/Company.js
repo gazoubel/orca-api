@@ -6,10 +6,31 @@ module.exports = {
     },
     acronym: {
       type: "string",
-      required: true
+      required: true,
+      unique: true
     },
     userRelationships:{
       collection: 'CompanyToUser',
+      via: 'company',
+      dominant: true
+    },
+    stages:{
+      collection: 'Stage',
+      via: 'company',
+      dominant: true
+    },
+    providers:{
+      collection: 'Provider',
+      via: 'company',
+      dominant: true
+    },
+    paymentTypes:{
+      collection: 'PaymentType',
+      via: 'company',
+      dominant: true
+    },
+    projects:{
+      collection: 'Project',
       via: 'company',
       dominant: true
     }
