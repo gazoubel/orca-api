@@ -7,7 +7,8 @@
  *
  * @docs        :: http://waterlock.ninja/documentation
  */
-
+ // var bcrypt = require('bcryptjs');
+ // var salt = bcrypt.genSaltSync(10);
 module.exports = require('waterlock').waterlocked({
   /* e.g.
     action: function(req, res){
@@ -43,25 +44,29 @@ module.exports = require('waterlock').waterlocked({
   registerNewCompany: function(req, res) {
     var params = req.params.all(),
       def = waterlock.Auth.definition,
-      criteria = { },
+      criteria = { email: params.newRegistration.email },
       scopeKey = def.email !== undefined ? 'email' : 'username';
 
+      // console.log (' params.newRegistration.email: '+ params.newRegistration.email);
+      console.log (' params.newRegistration.password: '+ params.newRegistration.password);
     var attr = {
       password: params.newRegistration.password,
       email: params.newRegistration.email
     }
 
     waterlock.engine.findAuth(criteria, function(err, user) {
-      if (user)
+      if(err)
+        return res.badRequest("error:"+err);
+      else if (user)
         return res.badRequest("User already exists");
       else {
         waterlock.engine.findOrCreateAuth(criteria, attr, function(err, user) {
           if (err)
             return res.badRequest(err);
 
-          console.log ('id: '+user.id);
-          console.log ('EMAIL: '+user.auth.email);
-          console.log ('pass: '+user.auth.password);
+          // console.log ('id: '+user.id);
+          // console.log ('EMAIL: '+user.auth.email);
+          // console.log ('pass deleted: '+user.auth.password);
           delete user.password;
 
           Person.create({
@@ -69,11 +74,13 @@ module.exports = require('waterlock').waterlocked({
             firstName: params.newRegistration.firstName,
             lastName: params.newRegistration.lastName,
             email: params.newRegistration.email
-          }).then(function(person){
-            console.log ('person id: '+person.id);
-            console.log ('person email: '+person.email);
+          })
+          .then(function(person){
+            // console.log ('person id: '+person.id);
+            // console.log ('person email: '+person.email);
             user.person = person.id;
-            console.log ('user id: '+user.id);
+            user.auth.password = params.newRegistration.password;
+            // console.log ('pass to be saved saved: '+user.auth.password );
             return user.save(function(error) {
                 if(error) {
                   console.log ('user error: '+error);
@@ -81,51 +88,61 @@ module.exports = require('waterlock').waterlocked({
                 } else {
                     // value saved!
                     // req.send(user);
-                    console.log ('user person updated: '+user.person );
+                    // console.log ('pass saved: '+user.auth.password );
+                    // console.log ('user person updated: '+user.person );
                     return user;
                 }
             });
             // return user.save();
-          }).then(function(updatedUser){
-            console.log ('updatedUser id: '+updatedUser.id);
+          }).then(function(person){
+            // console.log ('updatedUser id: '+updatedUser.id);
             return Company.create({
               name: params.newRegistration.companyFullName,
               acronym: params.newRegistration.companyAcronym
-            })
+            });
           }).then(function(company){
-            console.log ('company id: '+company.id);
+            // console.log ('company id: '+company.id);
+            // console.log ('company id: '+company.acronym);
             return CompanyToUser.create({
               user: user.id,
               company: company.id,
               privilege: 'admin'
             });
           }).then(function(companyToUser){
-            console.log ('companyToUser id: '+companyToUser.id);
-            console.log ('finished creation: ');
+            // console.log ('companyToUser id: '+companyToUser.id);
+            // console.log ('finished creation: ');
             return res.ok(user);
           }).catch(function (err) {
             // catch any exception problem up to this point
             console.log("Serious problem during company creation", err);
             throw new Error('could not create company: '+err);
-        });
-
-          // Company.create({
-          //   name: params.newRegistration.companyFullName,
-          //   acronym: params.newRegistration.companyAcronym
-          // }).then(function(company){
-          //   return CompanyToUser.create({
-          //     user: user.id,
-          //     company: company.id,
-          //     privilege: 'admin'
-          //   });
-          // }).then(function(companyToUser){
-          //   console.log ('finished creation: ');
-          //   return res.ok(user);
-          //
-          // });
+          });
         });
       }
     });
   }
 
+  // ,loginx: function( req, res ) {
+  //   var params = req.allParams();
+  //   console.log ('params.email: '+params.email);
+  //   console.log ('params.password: '+params.password);
+  //   var auth = {
+  //     email: params.email
+  //   };
+  //   waterlock.engine.findAuth(auth, function(err, user){
+  //     if(err){
+  //       return res.json(err);
+  //     }
+  //     if (user) {
+  //       var result = bcrypt.compareSync(params.password, user.auth.password);
+  //       if(result)
+  //         waterlock.cycle.loginSuccess(req, res, user);
+  //       else {
+  //          waterlock.cycle.loginFailure(req, res, user, {error: 'Invalid email or password'});
+  //       }
+  //     } else {
+  //       waterlock.cycle.loginFailure(req, res, null, {error: 'user not found'});
+  //     }
+  //   });
+  // }
 });
