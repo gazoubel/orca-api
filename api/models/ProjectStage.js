@@ -5,14 +5,17 @@ module.exports = {
       required: true,
       unique: true
     },
-    company:{
-      model: 'Company',
+    project:{
+      model: 'Project',
       required: true
     },
-    projectStages:{
-      collection: 'ProjectStage',
-      via: 'project',
-      dominant: true
+
+    previous:{
+      model: 'ProjectStage'
+    },
+    next:{
+      model: 'ProjectStage'
     }
+
   }
 };
