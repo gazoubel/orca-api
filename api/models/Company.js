@@ -33,6 +33,11 @@ module.exports = {
       collection: 'Project',
       via: 'company',
       dominant: true
+    },
+    purchaseTransactions:{
+      collection: 'PurchaseTransaction',
+      via: 'company',
+      dominant: true
     }
   }
 };

@@ -8,6 +8,11 @@ module.exports = {
     company:{
       model: 'Company',
       required: true
+    },
+    purchaseTransactions:{
+      collection: 'PurchaseTransaction',
+      via: 'provider',
+      dominant: true
     }
   }
 };
