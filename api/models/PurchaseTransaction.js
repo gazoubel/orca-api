@@ -10,6 +10,15 @@ module.exports = {
     provider:{
       model: 'Provider',
       required: false
+    },
+    total: {
+      type: "integer",
+      required: true
+    },
+    purchaseTransactionItems:{
+      collection: 'PurchaseTransactionItem',
+      via: 'purchaseTransaction',
+      dominant: true
     }
   }
 };
