@@ -38,6 +38,11 @@ module.exports = {
       collection: 'PurchaseTransaction',
       via: 'company',
       dominant: true
+    },
+    people:{
+      collection: 'Person',
+      via: 'company',
+      dominant: true
     }
   }
 };

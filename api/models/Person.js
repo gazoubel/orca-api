@@ -1,5 +1,9 @@
 module.exports = {
   attributes: {
+    company:{
+      model: 'Company',
+      required: true
+    },
     firstName: {
       type: "string",
       required: true

@@ -69,46 +69,51 @@ module.exports = require('waterlock').waterlocked({
           // console.log ('pass deleted: '+user.auth.password);
           delete user.password;
 
-          Person.create({
-            user: user.id,
-            firstName: params.newRegistration.firstName,
-            lastName: params.newRegistration.lastName,
-            email: params.newRegistration.email
+          return Company.create({
+            name: params.newRegistration.companyFullName,
+            acronym: params.newRegistration.companyAcronym
           })
-          .then(function(person){
-            // console.log ('person id: '+person.id);
-            // console.log ('person email: '+person.email);
-            user.person = person.id;
-            user.auth.password = params.newRegistration.password;
-            // console.log ('pass to be saved saved: '+user.auth.password );
-            return user.save(function(error) {
-                if(error) {
-                  console.log ('user error: '+error);
-                    // do something with the error.
-                } else {
-                    // value saved!
-                    // req.send(user);
-                    // console.log ('pass saved: '+user.auth.password );
-                    // console.log ('user person updated: '+user.person );
-                    return user;
-                }
-            });
-            // return user.save();
-          }).then(function(person){
-            // console.log ('updatedUser id: '+updatedUser.id);
-            return Company.create({
-              name: params.newRegistration.companyFullName,
-              acronym: params.newRegistration.companyAcronym
-            });
-          }).then(function(company){
-            // console.log ('company id: '+company.id);
-            // console.log ('company id: '+company.acronym);
-            return CompanyToUser.create({
+          .then(function(company){
+            console.log ('company id: '+company.id);
+            return Person.create({
               user: user.id,
+              firstName: params.newRegistration.firstName,
+              lastName: params.newRegistration.lastName,
+              email: params.newRegistration.email,
               company: company.id,
-              privilege: 'admin'
-            });
-          }).then(function(companyToUser){
+            })
+            .then(function(person){
+              console.log ('company id: '+company.id);
+              // console.log ('person id: '+person.id);
+              // console.log ('person email: '+person.email);
+              user.person = person.id;
+              user.auth.password = params.newRegistration.password;
+              // console.log ('pass to be saved saved: '+user.auth.password );
+              return user.save(function(error) {
+                  if(error) {
+                    console.log ('user error: '+error);
+                      // do something with the error.
+                  } else {
+                      // value saved!
+                      // req.send(user);
+                      // console.log ('pass saved: '+user.auth.password );
+                      // console.log ('user person updated: '+user.person );
+                      return user;
+                  }
+              });
+              // return user.save();
+            }).then(function(){
+              // console.log ('company id: '+company.id);
+              console.log ('company id: '+company.id);
+              console.log ('company id: '+user.id);
+              return CompanyToUser.create({
+                user: user.id,
+                company: company.id,
+                privilege: 'admin'
+              });
+            })
+          })
+          .then(function(companyToUser){
             // console.log ('companyToUser id: '+companyToUser.id);
             // console.log ('finished creation: ');
             return res.ok(user);
@@ -117,6 +122,57 @@ module.exports = require('waterlock').waterlocked({
             console.log("Serious problem during company creation", err);
             throw new Error('could not create company: '+err);
           });
+
+
+
+          // Person.create({
+          //   user: user.id,
+          //   firstName: params.newRegistration.firstName,
+          //   lastName: params.newRegistration.lastName,
+          //   email: params.newRegistration.email
+          // })
+          // .then(function(person){
+          //   // console.log ('person id: '+person.id);
+          //   // console.log ('person email: '+person.email);
+          //   user.person = person.id;
+          //   user.auth.password = params.newRegistration.password;
+          //   // console.log ('pass to be saved saved: '+user.auth.password );
+          //   return user.save(function(error) {
+          //       if(error) {
+          //         console.log ('user error: '+error);
+          //           // do something with the error.
+          //       } else {
+          //           // value saved!
+          //           // req.send(user);
+          //           // console.log ('pass saved: '+user.auth.password );
+          //           // console.log ('user person updated: '+user.person );
+          //           return user;
+          //       }
+          //   });
+          //   // return user.save();
+          // }).then(function(person){
+          //   // console.log ('updatedUser id: '+updatedUser.id);
+          //   return Company.create({
+          //     name: params.newRegistration.companyFullName,
+          //     acronym: params.newRegistration.companyAcronym
+          //   });
+          // }).then(function(company){
+          //   // console.log ('company id: '+company.id);
+          //   // console.log ('company id: '+company.acronym);
+          //   return CompanyToUser.create({
+          //     user: user.id,
+          //     company: company.id,
+          //     privilege: 'admin'
+          //   });
+          // }).then(function(companyToUser){
+          //   // console.log ('companyToUser id: '+companyToUser.id);
+          //   // console.log ('finished creation: ');
+          //   return res.ok(user);
+          // }).catch(function (err) {
+          //   // catch any exception problem up to this point
+          //   console.log("Serious problem during company creation", err);
+          //   throw new Error('could not create company: '+err);
+          // });
         });
       }
     });
