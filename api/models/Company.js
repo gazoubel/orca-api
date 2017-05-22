@@ -43,6 +43,16 @@ module.exports = {
       collection: 'Person',
       via: 'company',
       dominant: true
+    },
+    items:{
+      collection: 'Item',
+      via: 'company',
+      dominant: true
+    },
+    laborItems:{
+      collection: 'LaborItem',
+      via: 'company',
+      dominant: true
     }
   }
 };
