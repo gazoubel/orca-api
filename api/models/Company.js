@@ -39,6 +39,11 @@ module.exports = {
       via: 'company',
       dominant: true
     },
+    paymentTransactions:{
+      collection: 'PaymentTransaction',
+      via: 'company',
+      dominant: true
+    },
     people:{
       collection: 'Person',
       via: 'company',
