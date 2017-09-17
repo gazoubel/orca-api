@@ -13,6 +13,12 @@ module.exports = {
       collection: 'ProjectStage',
       via: 'project',
       dominant: true
+    },
+    totalClosingAmount:{
+      type: "integer"
+    },
+    isArchived:{
+      type: "boolean"
     }
   }
 };

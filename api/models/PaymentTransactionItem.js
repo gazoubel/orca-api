@@ -3,6 +3,10 @@ module.exports = {
     paymentTransaction:{
       model: 'PaymentTransaction',
       required: true
-    }
+    },
+    projectStage:{
+      model: 'ProjectStage',
+      required: true
+    },
   }
 };

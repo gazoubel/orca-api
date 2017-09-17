@@ -58,6 +58,9 @@ module.exports = {
       collection: 'LaborItem',
       via: 'company',
       dominant: true
+    },
+    isArchived: {
+      type:'boolean'
     }
   }
 };

@@ -7,6 +7,11 @@ module.exports = {
     company:{
       model: 'Company',
       required: true
-    }
+    },
+    // purchaseTransactions:{
+    //   collection: 'PurchaseTransaction',
+    //   via: 'paymentType',
+    //   dominant: true
+    // }
   }
 };
