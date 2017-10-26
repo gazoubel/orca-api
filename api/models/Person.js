@@ -12,8 +12,25 @@ module.exports = {
       type: "string",
       required: true
     },
-    user:{
-      model: 'User'
-    }
+    projects:{
+      collection: 'Project',
+      via: 'assignee',
+      dominant: true
+    },
+    paymentTransactions:{
+      collection: 'PaymentTransaction',
+      via: 'person',
+      dominant: true
+    },
+    companyRelationship: {
+      model: 'CompanyToUser'
+    },
+    // privilege: {
+    //   type: "string",
+    //   required: true
+    // },
+    // user:{
+    //   model: 'User'
+    // }
   }
 };

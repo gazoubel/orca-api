@@ -9,6 +9,9 @@ module.exports = {
     },
     company:{
       model: 'Company'
-    }
+    },
+    person: {
+      model: 'Person'
+    },
   }
 };

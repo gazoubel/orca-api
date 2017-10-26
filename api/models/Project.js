@@ -9,6 +9,10 @@ module.exports = {
       model: 'Company',
       required: true
     },
+    assignee:{
+      model: 'Person',
+      required: false
+    },
     projectStages:{
       collection: 'ProjectStage',
       via: 'project',

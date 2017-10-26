@@ -74,19 +74,29 @@ module.exports = require('waterlock').waterlocked({
             acronym: params.newRegistration.companyAcronym
           })
           .then(function(company){
-            console.log ('company id: '+company.id);
+            // console.log ('company id: '+company.id);
             return Person.create({
-              user: user.id,
+              // user: user.id,
               firstName: params.newRegistration.firstName,
               lastName: params.newRegistration.lastName,
               email: params.newRegistration.email,
               company: company.id,
+              // privilege: 'admin'
             })
             .then(function(person){
-              console.log ('company id: '+company.id);
-              // console.log ('person id: '+person.id);
-              // console.log ('person email: '+person.email);
-              user.person = person.id;
+              // console.log ('company id: '+company.id);
+              // console.log ('company id: '+company.id);
+              // console.log ('company id: '+user.id);
+              return CompanyToUser.create({
+                user: user.id,
+                company: company.id,
+                person: person.id,
+                privilege: 'admin'
+              });
+
+              // return user.save();
+            })
+            .then(function(companyToUser){
               user.auth.password = params.newRegistration.password;
               // console.log ('pass to be saved saved: '+user.auth.password );
               return user.save(function(error) {
@@ -94,28 +104,15 @@ module.exports = require('waterlock').waterlocked({
                     console.log ('user error: '+error);
                       // do something with the error.
                   } else {
-                      // value saved!
-                      // req.send(user);
-                      // console.log ('pass saved: '+user.auth.password );
-                      // console.log ('user person updated: '+user.person );
                       return user;
                   }
               });
-              // return user.save();
-            }).then(function(){
-              // console.log ('company id: '+company.id);
-              console.log ('company id: '+company.id);
-              console.log ('company id: '+user.id);
-              return CompanyToUser.create({
-                user: user.id,
-                company: company.id,
-                privilege: 'admin'
-              });
             })
           })
-          .then(function(companyToUser){
+          .then(function(){
             // console.log ('companyToUser id: '+companyToUser.id);
-            // console.log ('finished creation: ');
+            console.log ('finished with user: '+user.id);
+            console.log ('finished creation: ');
             return res.ok(user);
           }).catch(function (err) {
             // catch any exception problem up to this point

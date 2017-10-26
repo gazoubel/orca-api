@@ -19,9 +19,11 @@ module.exports = {
       via: 'user',
       dominant: true
     },
-    person:{
-      model: 'Person'
-    }
+    // people:{
+    //   collection: 'Person',
+    //   via: 'user',
+    //   dominant: true
+    // },
 
   }),
 

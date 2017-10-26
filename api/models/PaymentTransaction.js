@@ -7,6 +7,10 @@ module.exports = {
       model: 'Company',
       required: true
     },
+    person:{
+      model: 'Person',
+      required: true
+    },
     // total: {
     //   type: "integer",
     //   required: true
