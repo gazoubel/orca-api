@@ -25,6 +25,16 @@ module.exports = {
     companyRelationship: {
       model: 'CompanyToUser'
     },
+    isActive: {
+      type: "boolean",
+      required: true
+    },
+    phone: {
+      type: "string",
+    },
+    notes: {
+      type: "string",
+    },
     // privilege: {
     //   type: "string",
     //   required: true

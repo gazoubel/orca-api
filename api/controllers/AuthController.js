@@ -81,6 +81,7 @@ module.exports = require('waterlock').waterlocked({
               lastName: params.newRegistration.lastName,
               email: params.newRegistration.email,
               company: company.id,
+              isActive: true,
               // privilege: 'admin'
             })
             .then(function(person){
