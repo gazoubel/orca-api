@@ -14,16 +14,16 @@ module.exports = {
     nickname: 'string'
     */
 
-    companyRelationships:{
-      collection: 'CompanyToUser',
-      via: 'user',
-      dominant: true
-    },
-    // people:{
-    //   collection: 'Person',
+    // companyRelationships:{
+    //   collection: 'CompanyToUser',
     //   via: 'user',
     //   dominant: true
     // },
+    people:{
+      collection: 'Person',
+      via: 'user',
+      dominant: true
+    },
 
   }),
 

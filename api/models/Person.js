@@ -35,12 +35,16 @@ module.exports = {
     notes: {
       type: "string",
     },
+    isAdmin: {
+      type: "boolean",
+      required: true
+    },
     // privilege: {
     //   type: "string",
     //   required: true
     // },
-    // user:{
-    //   model: 'User'
-    // }
+    user:{
+      model: 'User'
+    }
   }
 };
