@@ -12,7 +12,7 @@ module.exports = {
       type: "string",
       required: true
     },
-    projects:{
+    projectsAssignedTo:{
       collection: 'Project',
       via: 'assignee',
       dominant: true
