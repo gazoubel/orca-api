@@ -23,6 +23,11 @@ module.exports = {
     },
     isArchived:{
       type: "boolean"
+    },
+    teamMembers:{
+      collection: 'Person',
+      via: 'teamMemberOf',
+      dominant: true
     }
   }
 };

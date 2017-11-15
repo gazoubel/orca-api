@@ -17,6 +17,10 @@ module.exports = {
       via: 'assignee',
       dominant: true
     },
+    teamMemberOf:{
+      collection: 'Project',
+      via: 'teamMembers'
+    },
     paymentTransactions:{
       collection: 'PaymentTransaction',
       via: 'person',
