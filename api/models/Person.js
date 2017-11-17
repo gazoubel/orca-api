@@ -49,6 +49,9 @@ module.exports = {
     // },
     user:{
       model: 'User'
+    },
+    privilege:{
+      model: 'Privilege'
     }
   }
 };

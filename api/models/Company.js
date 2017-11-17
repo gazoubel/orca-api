@@ -59,6 +59,11 @@ module.exports = {
       via: 'company',
       dominant: true
     },
+    privileges:{
+      collection: 'Privilege',
+      via: 'company',
+      dominant: true
+    },
     isArchived: {
       type:'boolean'
     }
