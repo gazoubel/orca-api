@@ -143,7 +143,7 @@ module.exports = require('waterlock').waterlocked({
                 if (err)
                   return res.badRequest(err);
                 person.user = user.id;
-                person.isAdmin = true;
+                // person.isAdmin = true;
                 return person.save(function(error) {
                     if(error) {
                       console.log ('user error: '+error);

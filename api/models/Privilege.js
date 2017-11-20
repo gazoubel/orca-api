@@ -13,7 +13,7 @@ module.exports = {
       via: 'privilege',
       dominant: true
     },
-    displayAdminTab: {
+    company_administration: {
       type: "boolean"
     },
   }
