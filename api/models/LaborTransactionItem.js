@@ -1,7 +1,7 @@
 module.exports = {
   attributes: {
-    paymentTransaction:{
-      model: 'PaymentTransaction',
+    laborTransaction:{
+      model: 'LaborTransaction',
       required: true
     },
     projectStage:{

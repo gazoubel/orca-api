@@ -21,8 +21,8 @@ module.exports = {
       collection: 'Project',
       via: 'teamMembers'
     },
-    paymentTransactions:{
-      collection: 'PaymentTransaction',
+    laborTransactions:{
+      collection: 'laborTransaction',
       via: 'person',
       dominant: true
     },

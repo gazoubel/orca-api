@@ -39,8 +39,8 @@ module.exports = {
       via: 'company',
       dominant: true
     },
-    paymentTransactions:{
-      collection: 'PaymentTransaction',
+    laborTransactions:{
+      collection: 'laborTransaction',
       via: 'company',
       dominant: true
     },

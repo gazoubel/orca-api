@@ -15,9 +15,9 @@ module.exports = {
     //   type: "integer",
     //   required: true
     // },
-    paymentTransactionItems:{
-      collection: 'PaymentTransactionItem',
-      via: 'paymentTransaction',
+    laborTransactionItems:{
+      collection: 'LaborTransactionItem',
+      via: 'laborTransaction',
       dominant: true
     }
   }
