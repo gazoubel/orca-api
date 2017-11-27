@@ -8,6 +8,11 @@ module.exports = {
       model: 'Company',
       required: true
     },
+    paymentTransactions:{
+      collection: 'paymentTransaction',
+      via: 'paymentType',
+      dominant: true
+    }
     // purchaseTransactions:{
     //   collection: 'PurchaseTransaction',
     //   via: 'paymentType',

@@ -42,6 +42,11 @@ module.exports = {
     },
     invoiceNumber: {
       type: "string"
+    },
+    paymentTransactions:{
+      collection: 'paymentTransaction',
+      via: 'purchaseTransaction',
+      dominant: true
     }
   }
 };

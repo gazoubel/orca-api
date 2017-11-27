@@ -19,6 +19,11 @@ module.exports = {
       collection: 'LaborTransactionItem',
       via: 'laborTransaction',
       dominant: true
+    },
+    paymentTransactions:{
+      collection: 'PaymentTransaction',
+      via: 'laborTransaction',
+      dominant: true
     }
   }
 };

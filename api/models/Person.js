@@ -52,6 +52,11 @@ module.exports = {
     },
     privilege:{
       model: 'Privilege'
+    },
+    paymentTransactions:{
+      collection: 'paymentTransaction',
+      via: 'paidByPerson',
+      dominant: true
     }
   }
 };
