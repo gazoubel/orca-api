@@ -15,14 +15,14 @@ module.exports = {
     //   type: "integer",
     //   required: true
     // },
-    laborTransactionItems:{
-      collection: 'LaborTransactionItem',
-      via: 'laborTransaction',
+    paycheckItems:{
+      collection: 'PaycheckItem',
+      via: 'paycheck',
       dominant: true
     },
     paymentTransactions:{
       collection: 'PaymentTransaction',
-      via: 'laborTransaction',
+      via: 'paycheck',
       dominant: true
     }
   }

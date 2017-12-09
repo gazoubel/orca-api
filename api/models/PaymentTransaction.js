@@ -4,8 +4,8 @@ module.exports = {
       model: 'Company',
       required: true
     },
-    laborTransaction:{
-      model: 'LaborTransaction'
+    paycheck:{
+      model: 'Paycheck'
     },
     purchaseTransaction:{
       model: 'PurchaseTransaction'

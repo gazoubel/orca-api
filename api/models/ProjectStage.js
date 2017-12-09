@@ -26,8 +26,8 @@ module.exports = {
       via: 'defaultProjectStage',
       // dominant: true
     },
-    laborTransactionItems:{
-      collection: 'laborTransactionItem',
+    paycheckItems:{
+      collection: 'paycheckItem',
       via: 'projectStage',
       dominant: true
     },

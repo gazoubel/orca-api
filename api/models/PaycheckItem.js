@@ -1,7 +1,7 @@
 module.exports = {
   attributes: {
-    laborTransaction:{
-      model: 'LaborTransaction',
+    paycheck:{
+      model: 'Paycheck',
       required: true
     },
     projectStage:{
