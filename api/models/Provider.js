@@ -8,8 +8,8 @@ module.exports = {
       model: 'Company',
       required: true
     },
-    purchaseTransactions:{
-      collection: 'PurchaseTransaction',
+    purchaseBills:{
+      collection: 'PurchaseBill',
       via: 'provider',
       dominant: true
     }

@@ -13,8 +13,8 @@ module.exports = {
       via: 'paymentType',
       dominant: true
     }
-    // purchaseTransactions:{
-    //   collection: 'PurchaseTransaction',
+    // purchaseBills:{
+    //   collection: 'PurchaseBill',
     //   via: 'paymentType',
     //   dominant: true
     // }

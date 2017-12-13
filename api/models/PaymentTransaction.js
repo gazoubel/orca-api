@@ -7,8 +7,8 @@ module.exports = {
     paycheck:{
       model: 'Paycheck'
     },
-    purchaseTransaction:{
-      model: 'PurchaseTransaction'
+    purchaseBill:{
+      model: 'PurchaseBill'
     },
     transactionPaidOn: {
       type: "date"

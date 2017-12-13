@@ -34,8 +34,8 @@ module.exports = {
       via: 'company',
       dominant: true
     },
-    purchaseTransactions:{
-      collection: 'PurchaseTransaction',
+    purchaseBills:{
+      collection: 'PurchaseBill',
       via: 'company',
       dominant: true
     },

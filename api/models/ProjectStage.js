@@ -16,13 +16,13 @@ module.exports = {
     next:{
       model: 'ProjectStage'
     },
-    purchaseTransactionItems:{
-      collection: 'PurchaseTransactionItem',
+    purchaseBillItems:{
+      collection: 'PurchaseBillItem',
       via: 'projectStage',
       dominant: true
     },
-    defaultPurchaseTransactions:{
-      collection: 'PurchaseTransaction',
+    defaultPurchaseBills:{
+      collection: 'PurchaseBill',
       via: 'defaultProjectStage',
       // dominant: true
     },

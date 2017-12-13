@@ -3,8 +3,8 @@ module.exports = {
     // name: {
     //   type: "string"
     // },
-    purchaseTransaction:{
-      model: 'PurchaseTransaction',
+    purchaseBill:{
+      model: 'PurchaseBill',
       required: true
     },
     projectStage:{

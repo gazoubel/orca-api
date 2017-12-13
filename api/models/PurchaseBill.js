@@ -27,9 +27,9 @@ module.exports = {
     transactionPaidOn: {
       type: "date"
     },
-    purchaseTransactionItems:{
-      collection: 'PurchaseTransactionItem',
-      via: 'purchaseTransaction',
+    purchaseBillItems:{
+      collection: 'PurchaseBillItem',
+      via: 'purchaseBill',
       dominant: true
     },
     defaultProjectStage:{
@@ -45,7 +45,7 @@ module.exports = {
     },
     paymentTransactions:{
       collection: 'paymentTransaction',
-      via: 'purchaseTransaction',
+      via: 'purchaseBill',
       dominant: true
     }
   }
